@@ -11,4 +11,18 @@
 #  board_id   :integer
 #
 class Post < ApplicationRecord
+
+  validates(:body, presence: true) 
+
+  # scope :status, -> {where(status: "expires_on")}
+
+  def expires
+    if self.expires_on - Date.today <= 0
+      return true
+    else
+      return false
+    end
+  end
+
+
 end
